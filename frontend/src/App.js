@@ -5,10 +5,10 @@ import Routes from "./routes";
 
 export default function App() {
     return (
-        <AuthContextProvider>
-            <Router>
+        <Router>
+            <AuthContextProvider>
                 <Routes />
-            </Router>
-        </AuthContextProvider>
+            </AuthContextProvider>
+        </Router>
     );
 }

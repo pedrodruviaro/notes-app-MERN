@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { Button, Container, TextField } from "@material-ui/core";
 import { Box } from "@material-ui/system";
 import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
-    const history = useHistory();
     const { login } = useAuth();
 
     // handle error
@@ -34,14 +32,9 @@ export default function Login() {
 
         const resp = await login(credentials);
 
-        if (typeof resp === "object" && resp !== undefined) {
-            history.push(`/dashboard/${resp._id}`);
-        }
-
         if (typeof resp === "string") {
             setError(resp);
             return;
-        } else {
         }
     }
 
@@ -74,9 +67,12 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button type="submit" variant="contained">
-                    Contained
+                    Login
                 </Button>
             </Box>
+            <p>
+                Don't have an account? <Link to="/register">Create one!</Link>
+            </p>
         </Container>
     );
 }
