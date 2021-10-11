@@ -10,7 +10,7 @@ export default function Login() {
     const [error, setError] = useState("");
 
     const history = useHistory();
-    const { login, user } = useAuth();
+    const { login } = useAuth();
 
     // handle error
     function showError(err) {
@@ -34,8 +34,7 @@ export default function Login() {
 
         const resp = await login(credentials);
 
-        if (typeof resp === "object") {
-            console.log(user);
+        if (typeof resp === "object" && resp !== undefined) {
             history.push(`/dashboard/${resp._id}`);
         }
 

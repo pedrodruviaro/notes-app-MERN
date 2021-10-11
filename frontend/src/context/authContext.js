@@ -12,13 +12,14 @@ export default function AuthContextProvider({ children }) {
 
     // login function
     async function login(credentials) {
+        console.log(user);
         try {
             const { data } = await api.post("/api/auth/login", credentials);
 
             if (data) {
-                console.log(data);
                 setAuthorized(true);
                 setUser(data);
+                console.log(data);
                 return data;
             }
         } catch (error) {
